@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="normal/base::layout(~{::section})">
+
+<head>
+	<meta charset="UTF-8" />
+	<title>This is about page</title>
+</head>
+
+<body>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 offset-md-3">
+					<div class="my-card mt-1">
+
+						 <!-- <div th:if="${session.message2}" th:classappend="${session.message2.type}" class="alert"
+						 							role="alert">
+						 							<p class="text-center" th:text="${session.message2.content}"></p>
+						 							<script type="text/javascript">
+						 								setTimeout(function () {
+						 									window.location.href = '/user/profile';
+						 								}, 5000); 
+						 							</script>
+						 						</div>  -->
+
+
+
+						<div class="container text-center">
+							<img style="width:80px;" th:src="@{/image/membership.png}" alt="" />
+
+						</div>
+
+						<h1 class="text-center">Update Details here!!</h1>
+						<form enctype="multipart/form-data" action="#" th:action="@{/user/update_detail}" method="post" th:object="${user}">
+                              
+                              <input type="hidden" th:value="${user.uid}" name="uid" />
+                              
+							<!-- for name -->
+							<div class="form-group">
+								<label for="name_field">Your Name</label>
+								<input type="text" class="form-control"
+									th:classappend="${#fields.hasErrors('name') ? 'is-invalid':''}" id="name_field"
+									aria-describedby="emailHelp" placeholder="Enter here" required
+									th:value="${user.name}" name="name" />
+									<div class="invalid-feedback" th:each="e :${#fields.errors('name')}" th:text="${e}">
+								</div>
+							</div>
+
+							<!-- for Email -->
+							<div class="form-group">
+								<label for="email_field">Your Email</label>
+								<input type="email" class="form-control"
+									th:classappend="${#fields.hasErrors('email') ? 'is-invalid':''}" id="email_field"
+									aria-describedby="emailHelp" placeholder="Enter here" required
+									th:value="${user.email}" name="email" />
+								<div class="invalid-feedback" th:each="e :${#fields.errors('email')}" th:text="${e}">
+								</div>
+							</div>
+
+							<!-- for Role -->
+							<div class="form-group">
+								<label for="name_field">Your Role</label>
+								<input type="text" class="form-control"
+									th:classappend="${#fields.hasErrors('name') ? 'is-invalid':''}" id="role_field"
+									aria-describedby="emailHelp" placeholder="Enter here" required
+									th:value="${user.role}" name="role" />
+
+								<div class="invalid-feedback" th:each="e :${#fields.errors('role')}" th:text="${e}">
+								</div>
+							</div>
+
+							<!-- account active-->
+							<div class="form-group">
+								<label for="name_field">Account Active</label>
+								<input type="text" class="form-control"
+									th:classappend="${#fields.hasErrors('name') ? 'is-invalid':''}" id="enabled_field"
+									aria-describedby="emailHelp" placeholder="Enter here" required
+									th:value="${user.enabled}" name="enabled" />
+
+								<div class="invalid-feedback" th:each="e :${#fields.errors('enabled')}" th:text="${e}">
+								</div>
+							</div>
+
+							<!-- for about-->
+							<div class="form-group">
+
+								<textarea name="about" th:text="${user.about}" rows="10" class="form-control"
+									th:classappend="${#fields.hasErrors('about') ? 'is-invalid':''}" id="about_field"
+									placeholder="Enter somethings yourself"></textarea>
+								<div class="invalid-feedback" th:each="e :${#fields.errors('about')}" th:text="${e}">
+								</div>
+							</div>
+
+
+							<!-- contant image -->
+							<div class="container text-center">
+								<img src="" style="width: 250px; height: 250px;" class="img-fluid my_profile_picture"
+									th:src="@{'/image/'+${user.imageUrl}}" alt="" />
+
+							</div>
+
+							<p class="text-secondary">Choose new profile pic</p>
+
+
+							<!-- contant image -->
+
+							<div class="custom-file">
+
+								<input type="file" name="profileImage" />
+
+							</div>
+
+							<!-- terms and conditions sections -->
+							<div class="form-group form-check text-center">
+
+								<input type="checkbox" name="agreement" class="form-check-input" id="agreement" />
+
+								<label for="agreement">Accept Terms and Condition</label>
+
+
+							</div>
+
+							<div class="container text-center">
+
+								<button type="submit" class="btn bg-primary text-white">Submit</button>
+								<button type="reset" class="btn btn-warning">Reset</button>
+							</div>
+
+
+
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+	</section>
+</body>
+
+</html>
